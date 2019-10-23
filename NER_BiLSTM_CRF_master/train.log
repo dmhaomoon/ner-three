@@ -1,0 +1,4 @@
+2019-08-16 16:44:14,424 - train.log - INFO - Reading model parameters from ckpt/ner.ckpt
+2019-08-19 09:26:31,750 - train.log - INFO - Reading model parameters from ckpt/ner.ckpt
+2019-08-19 09:37:20,238 - train.log - INFO - Reading model parameters from ckpt/ner.ckpt
+2019-08-21 15:49:19,599 - train.log - INFO - Reading model parameters from ckpt/ner.ckpt
