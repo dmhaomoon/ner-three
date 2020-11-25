@@ -7,8 +7,12 @@ feature:。
 """
 
 import pickle
-from nlp.seqlabel.feature import FeatureExtracter
-from nlp.seqlabel.utils import format_result
+import os
+import sys
+father_path = os.path.abspath('..')
+sys.path.append(father_path)
+from seqlabel.feature import FeatureExtracter
+from seqlabel.utils import format_result
 
 
 class InferenceModel:
@@ -133,9 +137,9 @@ class InferenceModel:
             raise Exception('模型文件中找不到opt')
 
 if __name__ == '__main__':
-    model_path = '/data/menghao/yun2space/nlp_code/seqlabel/crf_save1/crf_$5_test_f1_73.77.model'
+    model_path = father_path+'/seqlabel/crf_save_question/crf_$2_test_f1_77.98.model'
     test = InferenceModel(model_path)
-    test1 = InferenceModel('/data/menghao/yun2space/nlp_code/seqlabel/crf_save_question/crf_$5_test_f1_80.96.model')
+    test1 = InferenceModel(father_path+'/seqlabel/crf_save_question/crf_$4_test_f1_82.32.model')
     print(test(['小规模纳税人为什么可以底销项税不能底进项税']))
     # file = open('./question_document.txt',mode='r',encoding='utf-8')
     # file_write = open('./question_entity_same.txt',mode='a',encoding='utf-8')

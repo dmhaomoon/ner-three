@@ -6,26 +6,27 @@ version:1.0
 feature:该方法是处理会计数据，得到新的训练语料。
 """
 from tqdm import tqdm
-# renminribao = open('/data/menghao/yun2space/nlp_code/data_nlp/ner/server_train.nerdata',mode='r',encoding='utf-8')
-# for line in renminribao.readlines():
-#     line = line.replace('\n','')
-#     print(line)
-from nlp.seqlabel.inference import InferenceModel
-from nlp.opennlp.Jieba import Jieba
-from nlp.tools.text_process import single_word
+
+import os
+import sys
+father_path = os.path.abspath('..')
+sys.path.append(father_path)
+from seqlabel.inference import InferenceModel
+from nlp_code.word_cut.Jieba import Jieba
+from nlp_code.tools.chinese_process import single_word
 jieba1 = Jieba()
 
-model_path = '/data/menghao/yun2space/nlp_code/seqlabel/crf_save/crf_$1_test_f1_87.29.model'
+model_path = father_path+'/seqlabel/crf_save/crf_$1_test_f1_87.29.model'
 test = InferenceModel(model_path)
-kuaiji = open('/data/menghao/yun2space/nlp_code/data_nlp/ner/question.txt',mode='r',encoding='utf-8')
-dict_file = open('/data/menghao/yun2space/nlp_code/data_nlp/dict.txt',mode='r',encoding='utf-8')
+kuaiji = open(father_path+'/nlp_code/data/ner/question.txt',mode='r',encoding='utf-8')
+dict_file = open(father_path+'/nlp_code/data/kuaiji/dict.txt',mode='r',encoding='utf-8')
 dict_list = []
 for line in dict_file.readlines():
     line = line.replace('\n','')
     dict_list.append(line)
 
-file_kuaiji = open('./kuaijiqa_train.data',mode='a',encoding='utf-8')
-file_kuaiji1 = open('./kuaijiqa_test.data',mode='a',encoding='utf-8')
+file_kuaiji = open('./crf_save/kuaijiqa_train.data',mode='a',encoding='utf-8')
+file_kuaiji1 = open('./crf_save/kuaijiqa_test.data',mode='a',encoding='utf-8')
 num = 0
 for line in tqdm(kuaiji.readlines()):
     num = num + 1

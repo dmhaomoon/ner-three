@@ -15,10 +15,14 @@ from multiprocessing import Pool
 
 import sklearn_crfsuite
 from sklearn import model_selection
-from nlp.seqlabel.metrics import model_metrics
-from nlp.seqlabel.feature import FeatureExtracter
-from nlp.seqlabel.utils import check_path
-from nlp.seqlabel.data import load_ner_datas,datas2XY
+import os
+import sys
+father_path = os.path.abspath('..')
+sys.path.append(father_path)
+from seqlabel.metrics import model_metrics
+from seqlabel.feature import FeatureExtracter
+from seqlabel.utils import check_path
+from seqlabel.data import load_ner_datas,datas2XY
 from copy import deepcopy
 
 

@@ -10,8 +10,7 @@ import argparse
 import os
 
 base_path = os.path.dirname(__file__)
-
-
+father_path = os.path.abspath('..')
 
 def crfsuite_opt(parser):
     """
@@ -96,11 +95,11 @@ def feature_opt(parser):
                             [ltp: 哈工大 | stanford: 斯坦福 | jieba: 结巴]
                         """)
 
-    group.add_argument('-stanford_path', type=str, default='/data/menghao/yun2space/nlp_code/data_nlp/stanford',
+    group.add_argument('-stanford_path', type=str, default=father_path+'/nlp_code/data/stanford',
                        help="斯坦福nlp服务的 host")
 
 
-    group.add_argument('-LTP_DATA_DIR', type=str, default='/data/menghao/yun2space/nlp_code/data_nlp/ltp_data_v3.4.0',
+    group.add_argument('-LTP_DATA_DIR', type=str, default=father_path+'/nlp_code/data/ltp_data_v3.4.0',
                        help="哈工大nlp工具的模型文件夹路径")
 
     group.add_argument('-jieba_HMM', type=bool, default=False,
@@ -116,10 +115,10 @@ def train_opt(parser):
     group.add_argument('-k_fold', type=int, default=5,
                        help="交叉验证折数")
 
-    group.add_argument('-train_data_path', type=str,default='/data/menghao/yun2space/nlp_code/data_nlp/ner/kuaijiqa_train.data',
+    group.add_argument('-train_data_path', type=str,default=father_path+'/nlp_code/data/ner/kuaijiqa_train.data',
                        help="训练数据路径")
 
-    group.add_argument('-test_data_path', type=str, default='/data/menghao/yun2space/nlp_code/data_nlp/ner/kuaijiqa_test.data',
+    group.add_argument('-test_data_path', type=str, default=father_path+'/nlp_code/data/ner/kuaijiqa_test.data',
                        help="测试数据路径")
 
     group.add_argument('-verbose', action='store_true',

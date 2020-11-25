@@ -11,7 +11,11 @@ import re
 import json
 
 from math import exp, log
-from nlp.utils_nlp.IO import readfile
+import os
+import sys
+father_path = os.path.abspath('..')
+sys.path.append(father_path)
+from nlp_code.utils_nlp.IO import readfile
 
 
 def check_path(path):

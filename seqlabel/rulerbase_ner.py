@@ -1,7 +1,11 @@
 # -*- coding: UTF-8 -*-
-from ahocorasick import Automaton
-from nlp.utils_nlp.IO import readfile
 import os
+import sys
+father_path = os.path.abspath('..')
+sys.path.append(father_path)
+from ahocorasick import Automaton
+from nlp_code.utils_nlp.IO import readfile
+
 
 
 class RulerBaseNer:
@@ -55,7 +59,7 @@ class RulerBaseNer:
         return automaton
 
 if __name__ == '__main__':
-    dict = '/data/menghao/yun2space/nlp_code/data_nlp/dict.txt'
+    dict = father_path+'/nlp_code/data/kuaiji/dict.txt'
     test = RulerBaseNer(dict)
     sentence = '外购货物还有哪些没增值税？'
     print(test.parse_single_sentence(sentence))

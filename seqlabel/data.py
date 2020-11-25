@@ -11,8 +11,11 @@ from tqdm import tqdm
 from collections import defaultdict
 import pickle
 
-from nlp.seqlabel.utils import format_result
-
+import os
+import sys
+father_path = os.path.abspath('..')
+sys.path.append(father_path)
+from seqlabel.utils import format_result
 
 def load_ner_datas(datas_path, separator=' '):
     print('load data from %s' % datas_path)

@@ -11,8 +11,13 @@ from ahocorasick import Automaton
 from tqdm import tqdm
 import random
 import os
-from nlp.utils_nlp import *
-
+import sys
+father_path = os.path.abspath('..')
+sys.path.append(father_path)
+from nlp_code.word_cut.Jieba import Jieba
+from nlp_code.word_cut.ltp import LTP
+from nlp_code.word_cut.stanford import StanfordNlp
+from seqlabel.utils import create_tag,char2num,load_feature_template
 
 class WordPos:
     def __init__(self,
@@ -46,17 +51,14 @@ class WordPos:
 
         if self.nlptool == 'jieba':
             print('use HMM', self.jieba_HMM)
-            from opennlp.Jieba import Jieba
             self.model = Jieba(HMM=self.jieba_HMM)
 
         elif self.nlptool == 'ltp':
-            from opennlp.ltp import LTP
             if not self.LTP_DATA_DIR or not os.path.exists(self.LTP_DATA_DIR):
                 raise Exception('LTP_DATA_DIR 不存在')
             self.model = LTP(LTP_DATA_DIR=self.LTP_DATA_DIR, user_dicts_path=self.user_dicts_path)
 
         elif self.nlptool == 'stanford':
-            from opennlp.stanford import StanfordNlp
             self.model = StanfordNlp(self.stanford_path, user_dicts_path=self.user_dicts_path)
 
         self.tag_types = []
@@ -457,6 +459,6 @@ if __name__ == '__main__':
     test = WordPos()
     sentence = '外购货物还有哪些没增值税？'
     print(test._get_feature(sentence))
-    dict_path = '/data/menghao/yun2space/nlp_code/data_nlp/ner/server.vocab'
+    dict_path = father_path+'/nlp_code/data/ner/server.vocab'
     test = TrieTree(dict_path)
     print(test._vocab_feature(sentence))
