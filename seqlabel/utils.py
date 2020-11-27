@@ -111,7 +111,7 @@ def load_feature_template(feature_template_path, template_lines=None):
 #     return tags
 
 
-def create_tag(word_len, tag='', only_tag=False, concat_tag='-', tag_type='BIES'):
+def create_tag(word_len, tag='', only_tag=False, concat_tag='_', tag_type='BIES'):
     def concat(tt, tag):
         return concat_tag.join([tt, tag])
 
